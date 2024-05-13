@@ -10,4 +10,5 @@ struct User: Identifiable,Codable{
     var id = UUID()
     var email:String
     var password:String
+    var confirm_password:String
 }

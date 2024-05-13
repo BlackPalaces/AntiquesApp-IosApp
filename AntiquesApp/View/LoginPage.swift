@@ -13,7 +13,7 @@ struct LoginPage: View {
     var body: some View {
         NavigationView {
             VStack{
-                Text("Antiques")
+                Text("Antiques SHOP")
                     .bold()
                     .font(.system(size: 45, design: .serif))
                     .foregroundColor(.white)
@@ -59,9 +59,6 @@ struct LoginPage: View {
                     }.font(.system(size: 24))
                         .foregroundColor(.white)
                         .padding(.top,10)
-                    HStack{
-                        
-                    }
                     
                     Button(action: {print("Login")
                         dataModel.MyLogin()
@@ -76,7 +73,8 @@ struct LoginPage: View {
                     if dataModel.LoginFail{
                         Text("Login Failed!!").foregroundColor(.red)
                     }
-                    NavigationLink(destination: RegisterPage()) {
+                    NavigationLink(destination: RegisterPage()
+                        .environmentObject(Data_Model())) {
                         Text("Don't have a account Register").foregroundColor(.white)
                             .font(.system(size: 16,weight: .light,design: .serif))
                             .padding(5)
@@ -88,6 +86,7 @@ struct LoginPage: View {
                     .cornerRadius(16)
                 
             }.background(Image("BG2").scaledToFit())
+                .navigationBarBackButtonHidden(true)
         }
     }
 }

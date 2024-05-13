@@ -8,7 +8,7 @@ import Foundation
 import Firebase
 
 final class Data_Model: ObservableObject{
-    @Published var user = User(email: "", password: "")
+    @Published var user = User(email: "", password: "",confirm_password: "")
     @Published var isLogin: Bool = false
     @Published var LoginFail: Bool = false
     init(){
@@ -58,4 +58,27 @@ final class Data_Model: ObservableObject{
             }
         }
     }
+    
+    func MyRegister() {
+            // ตรวจสอบว่ารหัสผ่านและยืนยันรหัสผ่านตรงกันหรือไม่
+            guard user.password == user.confirm_password else {
+                // ถ้ารหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน ให้กำหนด LoginFail เป็น true
+                self.LoginFail = true
+                return
+            }
+            
+            // ถ้ารหัสผ่านและยืนยันรหัสผ่านตรงกัน
+            // ให้ดำเนินการลงทะเบียนผู้ใช้
+            Auth.auth().createUser(withEmail: user.email, password: user.password) { authResult, error in
+                // ตรวจสอบว่ามีข้อผิดพลาดหรือไม่
+                if let error = error {
+                    print("Error creating user: \(error.localizedDescription)")
+                    // หากมีข้อผิดพลาดในการสร้างผู้ใช้ กำหนด LoginFail เป็น true
+                    self.LoginFail = true
+                } else {
+                    // ถ้าสร้างผู้ใช้สำเร็จ กำหนด isLogin เป็น true
+                    self.isLogin = true
+                }
+            }
+        }
 }
