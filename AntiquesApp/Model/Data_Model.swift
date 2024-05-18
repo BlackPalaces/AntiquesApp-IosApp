@@ -81,4 +81,18 @@ final class Data_Model: ObservableObject{
                 }
             }
         }
+    
+    func forgotPassword() {
+        Auth.auth().sendPasswordReset(withEmail: self.user.email) { error in
+            if let error = error {
+                print("Error sending password reset email: \(error.localizedDescription)")
+                // หากเกิดข้อผิดพลาดในการส่งอีเมลลืมรหัสผ่าน สามารถทำการแจ้งให้ผู้ใช้ทราบได้
+            } else {
+                print("Password reset email sent successfully!")
+                print(self.user.email)
+                // ถ้าส่งอีเมลลืมรหัสผ่านสำเร็จ สามารถแจ้งให้ผู้ใช้ทราบได้
+            }
+        }
+    }
+
 }

@@ -105,7 +105,7 @@ struct RegisterPage: View {
                     .background(Color(red: 0.016, green: 0.014, blue: 0.01, opacity: 0.3))
                     .cornerRadius(16)
             }.background(Image("BG2").scaledToFit())
-                .navigationBarBackButtonHidden(true)
+                
         }.navigationBarBackButtonHidden(true)
     }
 }

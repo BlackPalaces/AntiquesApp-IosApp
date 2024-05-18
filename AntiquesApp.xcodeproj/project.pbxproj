@@ -25,6 +25,7 @@
 		0D6E2A962BF0FECF00F2A0CF /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2A952BF0FECF00F2A0CF /* LoginPage.swift */; };
 		0D6E2A982BF0FF0400F2A0CF /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2A972BF0FF0400F2A0CF /* RegisterPage.swift */; };
 		0D6E2A9E2BF1174C00F2A0CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D6E2A9D2BF1174C00F2A0CF /* GoogleService-Info.plist */; };
+		0D6E2AA02BF86FBF00F2A0CF /* ForgotPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2A9F2BF86FBF00F2A0CF /* ForgotPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		0D6E2A952BF0FECF00F2A0CF /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		0D6E2A972BF0FF0400F2A0CF /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
 		0D6E2A9D2BF1174C00F2A0CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0D6E2A9F2BF86FBF00F2A0CF /* ForgotPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				0D6E2A8F2BF0FBC200F2A0CF /* Profile.swift */,
 				0D6E2A952BF0FECF00F2A0CF /* LoginPage.swift */,
 				0D6E2A972BF0FF0400F2A0CF /* RegisterPage.swift */,
+				0D6E2A9F2BF86FBF00F2A0CF /* ForgotPage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D6E2A6F2BF0BF5700F2A0CF /* ContentView.swift in Sources */,
+				0D6E2AA02BF86FBF00F2A0CF /* ForgotPage.swift in Sources */,
 				0D6E2A6D2BF0BF5700F2A0CF /* AntiquesAppApp.swift in Sources */,
 				0D6E2A8C2BF0FBA500F2A0CF /* Cart.swift in Sources */,
 				0D6E2A902BF0FBC200F2A0CF /* Profile.swift in Sources */,
