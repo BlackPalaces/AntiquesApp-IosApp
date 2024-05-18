@@ -15,7 +15,7 @@ struct MainPage: View {
         if dataModel.isLogin {
             ContentView()
         } else {
-            LoginPage()
+            ProductDetails()
         }
     }
 }
