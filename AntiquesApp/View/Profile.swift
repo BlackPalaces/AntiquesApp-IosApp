@@ -49,17 +49,83 @@ struct Profile: View {
                                     .lineLimit(1)
                         }
                         .frame(width: 170,alignment: .leading)
-                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                      
                         .padding(.horizontal,10)
                         
                         VStack{
                             Text("name@gmail.com")
                                 .lineLimit(1)
                         }.frame(width: 170 , alignment: .leading)
-                            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                            
+                    }
+                    HStack{
+                        HStack{
+                            Image(systemName: "phone.circle.fill")
+                                    .resizable()
+                                    .frame(width:30, height: 30)
+                                    .aspectRatio(contentMode: .fit)
+                                Text("Phone Number")
+                                    .bold()
+                                    .lineLimit(1)
+                        }
+                        .frame(width: 170,alignment: .leading)
+                      
+                        .padding(.horizontal,10)
+                        
+                        VStack{
+                            Text("0999999999")
+                                .lineLimit(1)
+                        }.frame(width: 170 , alignment: .leading)
+                          
+                    }
+                    HStack{
+                        HStack{
+                            Image(systemName: "envelope.circle.fill")
+                                    .resizable()
+                                    .frame(width:30, height: 30)
+                                    .aspectRatio(contentMode: .fit)
+                                Text("Email")
+                                    .bold()
+                                    .lineLimit(1)
+                        }
+                        .frame(width: 170,alignment: .leading)
+                        
+                        .padding(.horizontal,10)
+                        
+                        VStack{
+                            Text("name@gmail.com")
+                                .lineLimit(1)
+                        }.frame(width: 170 , alignment: .leading)
+                           
+                    }
+                    
+                    VStack{
+                        HStack{
+                            Image(systemName: "location.fill")
+                                    .resizable()
+                                    .frame(width:30, height: 30)
+                                    .aspectRatio(contentMode: .fit)
+                                Text("Address")
+                                    .bold()
+                                    .lineLimit(1)
+                        }
+                        .frame(width: 170,alignment: .leading)
+                        .padding(.horizontal,10)
+                        VStack{
+                            Text("บ้านซอยแดง แตงแมงแตงแม๊งแต่งแน่งแนง")
+                        }.padding(.horizontal,10)
+                      
                     }
                 }
-               
+                VStack{
+                    Button(action: {print("Login")
+                        dataModel.Logout()
+                    }) {
+                        HStack{
+                            Label("LogOut", systemImage: "nil")
+                        }
+                    }
+                }
             }
             Spacer()
            
