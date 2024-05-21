@@ -7,46 +7,53 @@
 
 import SwiftUI
 
-struct Product: Identifiable, Hashable, Codable {
-    var id: UUID = UUID()
-    var name: String
-    var price: Double
-    var image: String
-}
 
 struct ProductCard: View {
    
-    var product: Product
-       
+    @EnvironmentObject var Productmodel : Product_Model
 
     var body: some View {
-        HStack {
-            Image(product.image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
-            VStack(alignment: .leading) {
-                Text(product.name)
-                    .font(.headline)
-                Text(String(format: "%.2f", product.price))
-                    .font(.headline)
+                    HStack {
+                Image("")
+                    .resizable()
+                    .frame(width: 140, height: 140)
+                    .aspectRatio(contentMode: .fit)
+                    .padding(5)
+                
+                VStack(alignment: .leading) {
+                    Text("")
+                        .font(.system(size: 20))
+                        .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    Text(String(format: "%.2f", ""))
+                        .font(.headline)
+                    Text(String("Stock: \(String(2))"))
+                        .font(.headline)
+                       
+                }.frame(width: 150,height: 130 ,alignment: .topLeading)
+                Spacer()
+                HStack{
+                    Button(action: {
+                        
+                    }) {Label("",systemImage: "pencil")
+                        .foregroundColor(.gray)}
+                    Button(action: {
+                        
+                    }) {Label("",systemImage: "trash.fill")
+                        .foregroundColor(.gray)}
+                }.frame(alignment: .topTrailing)
+                    .padding(.bottom,100)
+                    .padding(.trailing,5)
             }
-            Spacer()
-        }
-        .border(Color.gray, width: 2)
+            .frame(width: 380 ,height: 150)
+            .border(Color.gray, width: 1)
+            .cornerRadius(2)
+        
     }
 }
 
 struct ProductCard_Previews: PreviewProvider {
     static var previews: some View {
-        let sampleProduct = Product(id: UUID(), name: "monalisa ", price: 190000, image: "Mona")
-        return ProductCard(product: sampleProduct)
+        ProductCard().environmentObject(Product_Model())
     }
 }
 
-// Correct the variable name from Prodcut to Product
-var products = [
-    Product(name: "monalisa", price:19000, image:"Mona"),
-    Product(name: "grandma vase", price:2500, image:"grandma vase"),
-    Product(name: "moai", price:5555, image:"moai")
-]

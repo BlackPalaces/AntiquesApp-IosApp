@@ -8,8 +8,12 @@
 import Foundation
 
 
-struct ProductCart: Identifiable, Hashable, Codable{
-    var id = UUID()
-    var title: String = ""
-    var price: Double = 0.0
+struct ProductCart: Identifiable, Codable {
+    var id: String
+    var name: String
+    var description: String
+    var price: Double
+    var imageUrl: String
+    var stock: Int
 }
+
