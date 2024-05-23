@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D0F84E52BFDEB9B0061AA10 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0D0F84E42BFDEB9B0061AA10 /* FirebaseFirestoreSwift */; };
+		0D0F84E72BFE4F880061AA10 /* EditProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F84E62BFE4F880061AA10 /* EditProfilePage.swift */; };
+		0D0F84E92BFF179C0061AA10 /* EditProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F84E82BFF179C0061AA10 /* EditProductsView.swift */; };
+		0D0F84EB2BFF39850061AA10 /* ProductInCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F84EA2BFF39850061AA10 /* ProductInCartView.swift */; };
 		0D6E2A6D2BF0BF5700F2A0CF /* AntiquesAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2A6C2BF0BF5700F2A0CF /* AntiquesAppApp.swift */; };
 		0D6E2A6F2BF0BF5700F2A0CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2A6E2BF0BF5700F2A0CF /* ContentView.swift */; };
 		0D6E2A712BF0BF5700F2A0CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D6E2A702BF0BF5700F2A0CF /* Assets.xcassets */; };
@@ -28,12 +32,17 @@
 		0D6E2AA02BF86FBF00F2A0CF /* ForgotPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2A9F2BF86FBF00F2A0CF /* ForgotPage.swift */; };
 		0D6E2AA22BFA4A5E00F2A0CF /* Product_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2AA12BFA4A5E00F2A0CF /* Product_Model.swift */; };
 		0D6E2AA42BFA4DBA00F2A0CF /* AdminPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2AA32BFA4DBA00F2A0CF /* AdminPage.swift */; };
+		0DD01B1B2BFD0B8700D442DE /* ProductCardShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD01B1A2BFD0B8700D442DE /* ProductCardShow.swift */; };
+		0DD01B1D2BFD185900D442DE /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD01B1C2BFD185900D442DE /* AddProductView.swift */; };
 		FB726A112BF8A37800CA0CAC /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB726A102BF8A37800CA0CAC /* ProductCard.swift */; };
 		FB726A132BF8A91800CA0CAC /* ProductCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB726A122BF8A91800CA0CAC /* ProductCart.swift */; };
 		FB726A1A2BF8AE7700CA0CAC /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB726A192BF8AE7700CA0CAC /* ProductDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D0F84E62BFE4F880061AA10 /* EditProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePage.swift; sourceTree = "<group>"; };
+		0D0F84E82BFF179C0061AA10 /* EditProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductsView.swift; sourceTree = "<group>"; };
+		0D0F84EA2BFF39850061AA10 /* ProductInCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInCartView.swift; sourceTree = "<group>"; };
 		0D6E2A692BF0BF5700F2A0CF /* AntiquesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntiquesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6E2A6C2BF0BF5700F2A0CF /* AntiquesAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntiquesAppApp.swift; sourceTree = "<group>"; };
 		0D6E2A6E2BF0BF5700F2A0CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +61,8 @@
 		0D6E2A9F2BF86FBF00F2A0CF /* ForgotPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPage.swift; sourceTree = "<group>"; };
 		0D6E2AA12BFA4A5E00F2A0CF /* Product_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product_Model.swift; sourceTree = "<group>"; };
 		0D6E2AA32BFA4DBA00F2A0CF /* AdminPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPage.swift; sourceTree = "<group>"; };
+		0DD01B1A2BFD0B8700D442DE /* ProductCardShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardShow.swift; sourceTree = "<group>"; };
+		0DD01B1C2BFD185900D442DE /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		FB726A102BF8A37800CA0CAC /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
 		FB726A122BF8A91800CA0CAC /* ProductCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCart.swift; sourceTree = "<group>"; };
 		FB726A192BF8AE7700CA0CAC /* ProductDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
@@ -62,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D0F84E52BFDEB9B0061AA10 /* FirebaseFirestoreSwift in Frameworks */,
 				0D6E2A822BF0FA9400F2A0CF /* FirebaseDatabase in Frameworks */,
 				0D6E2A862BF0FA9400F2A0CF /* FirebaseStorage in Frameworks */,
 				0D6E2A802BF0FA9400F2A0CF /* FirebaseAuth in Frameworks */,
@@ -72,11 +84,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D0F84E32BFDEB9B0061AA10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0D6E2A602BF0BF5700F2A0CF = {
 			isa = PBXGroup;
 			children = (
 				0D6E2A6B2BF0BF5700F2A0CF /* AntiquesApp */,
 				0D6E2A6A2BF0BF5700F2A0CF /* Products */,
+				0D0F84E32BFDEB9B0061AA10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,8 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				0D6E2A932BF0FC7600F2A0CF /* User.swift */,
-				FB726A122BF8A91800CA0CAC /* ProductCart.swift */,
 				0D6E2A912BF0FC0D00F2A0CF /* Data_Model.swift */,
+				FB726A122BF8A91800CA0CAC /* ProductCart.swift */,
 				0D6E2AA12BFA4A5E00F2A0CF /* Product_Model.swift */,
 			);
 			path = Model;
@@ -135,6 +155,11 @@
 				FB726A102BF8A37800CA0CAC /* ProductCard.swift */,
 				FB726A192BF8AE7700CA0CAC /* ProductDetails.swift */,
 				0D6E2AA32BFA4DBA00F2A0CF /* AdminPage.swift */,
+				0DD01B1A2BFD0B8700D442DE /* ProductCardShow.swift */,
+				0DD01B1C2BFD185900D442DE /* AddProductView.swift */,
+				0D0F84E62BFE4F880061AA10 /* EditProfilePage.swift */,
+				0D0F84E82BFF179C0061AA10 /* EditProductsView.swift */,
+				0D0F84EA2BFF39850061AA10 /* ProductInCartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -160,6 +185,7 @@
 				0D6E2A812BF0FA9400F2A0CF /* FirebaseDatabase */,
 				0D6E2A832BF0FA9400F2A0CF /* FirebaseFirestore */,
 				0D6E2A852BF0FA9400F2A0CF /* FirebaseStorage */,
+				0D0F84E42BFDEB9B0061AA10 /* FirebaseFirestoreSwift */,
 			);
 			productName = AntiquesApp;
 			productReference = 0D6E2A692BF0BF5700F2A0CF /* AntiquesApp.app */;
@@ -219,12 +245,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D0F84E72BFE4F880061AA10 /* EditProfilePage.swift in Sources */,
+				0D0F84E92BFF179C0061AA10 /* EditProductsView.swift in Sources */,
+				0DD01B1B2BFD0B8700D442DE /* ProductCardShow.swift in Sources */,
 				0D6E2A6F2BF0BF5700F2A0CF /* ContentView.swift in Sources */,
 				0D6E2AA02BF86FBF00F2A0CF /* ForgotPage.swift in Sources */,
+				0D0F84EB2BFF39850061AA10 /* ProductInCartView.swift in Sources */,
 				0D6E2A6D2BF0BF5700F2A0CF /* AntiquesAppApp.swift in Sources */,
 				FB726A132BF8A91800CA0CAC /* ProductCart.swift in Sources */,
 				0D6E2A8C2BF0FBA500F2A0CF /* Cart.swift in Sources */,
 				0D6E2AA42BFA4DBA00F2A0CF /* AdminPage.swift in Sources */,
+				0DD01B1D2BFD185900D442DE /* AddProductView.swift in Sources */,
 				FB726A112BF8A37800CA0CAC /* ProductCard.swift in Sources */,
 				0D6E2A902BF0FBC200F2A0CF /* Profile.swift in Sources */,
 				FB726A1A2BF8AE7700CA0CAC /* ProductDetails.swift in Sources */,
@@ -452,6 +483,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0D0F84E42BFDEB9B0061AA10 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D6E2A7E2BF0FA9400F2A0CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
 		0D6E2A7F2BF0FA9400F2A0CF /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0D6E2A7E2BF0FA9400F2A0CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Home: View {
+    @StateObject private var viewModel = Product_Model()
     @State private var searchText: String = ""
     var body: some View {
         VStack{
@@ -52,8 +53,19 @@ struct Home: View {
                 .padding(.trailing, 30)
                 .padding(.top,2)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        } .padding(10)
+            .frame(maxWidth: .infinity, maxHeight: 60, alignment: .top)
+                ScrollView {
+                               LazyVStack {
+                                   ForEach(viewModel.products) { product in
+                                       ProductCardShow(product: product)
+                                   }
+                               }
+                           }
+                           .onAppear {
+                               viewModel.fetchProducts()
+                           }
+                Spacer()
+        }
     }
 }
 

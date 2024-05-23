@@ -9,51 +9,56 @@ import SwiftUI
 
 
 struct ProductCard: View {
-   
-    @EnvironmentObject var Productmodel : Product_Model
-
+    
+    var product: ProductCart
+    @StateObject private var viewModel = Product_Model()
     var body: some View {
-                    HStack {
-                Image("")
+        HStack {
+            AsyncImage(url: URL(string: product.imageUrl)) { image in
+                image
                     .resizable()
-                    .frame(width: 140, height: 140)
                     .aspectRatio(contentMode: .fit)
-                    .padding(5)
-                
-                VStack(alignment: .leading) {
-                    Text("")
-                        .font(.system(size: 20))
-                        .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
-                    Text(String(format: "%.2f", ""))
-                        .font(.headline)
-                    Text(String("Stock: \(String(2))"))
-                        .font(.headline)
-                       
-                }.frame(width: 150,height: 130 ,alignment: .topLeading)
-                Spacer()
-                HStack{
-                    Button(action: {
-                        
-                    }) {Label("",systemImage: "pencil")
-                        .foregroundColor(.gray)}
-                    Button(action: {
-                        
-                    }) {Label("",systemImage: "trash.fill")
-                        .foregroundColor(.gray)}
-                }.frame(alignment: .topTrailing)
-                    .padding(.bottom,100)
-                    .padding(.trailing,5)
+                    .frame(width: 150, height: 250)
+                    .clipped()
+            } placeholder: {
+                ProgressView()
             }
-            .frame(width: 380 ,height: 150)
-            .border(Color.gray, width: 1)
-            .cornerRadius(2)
+            .padding(5)
+            
+            VStack(alignment: .leading) {
+                Text(product.name)
+                    .font(.system(size: 20))
+                    .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                Text(String(format: "%.2f", product.price))
+                    .font(.headline)
+                Text(String("Stock: \(product.stock)"))
+                    .font(.headline)
+                
+            }.frame(width: 150,height: 130 ,alignment: .topLeading)
+            Spacer()
+            HStack{
+                NavigationLink(destination: EditProductsView(productID: product.id!)) {
+                                    Label("", systemImage: "pencil")
+                                        .foregroundColor(.gray)
+                                }
+                Button(action: {
+                    viewModel.deleteProduct(id: product.id!)
+                }) {Label("",systemImage: "trash.fill")
+                    .foregroundColor(.gray)}
+            }.frame(alignment: .topTrailing)
+                .padding(.bottom,100)
+                .padding(.trailing,5)
+        }
+        .frame(width: 380 ,height: 150)
+        .border(Color.gray, width: 1)
+        .cornerRadius(2)
         
     }
 }
 
 struct ProductCard_Previews: PreviewProvider {
     static var previews: some View {
-        ProductCard().environmentObject(Product_Model())
+        ProductCard(product: ProductCart(id: "1", name: "Mona", description: "A famous painting", price: 100.0, imageUrl: "", stock: 10))
     }
 }
 
