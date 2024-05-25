@@ -21,6 +21,13 @@ final class Product_Model: ObservableObject{
       @Published var errorMessage: String?
     @Published var products: [ProductCart] = []
     
+    private var dataModel: Data_Model
+       
+       // สร้าง initializer ที่รับ Data_Model เป็น parameter
+       init(dataModel: Data_Model) {
+           self.dataModel = dataModel
+       }
+    
     func addProduct() {
             guard !name.isEmpty,
                   !description.isEmpty,
@@ -167,5 +174,12 @@ final class Product_Model: ObservableObject{
         }
     }
 
+    
+    func Addcart() {
+        
+        let db = Firestore.firestore()
+        let userID = dataModel.userID
+    }
 
 }
+

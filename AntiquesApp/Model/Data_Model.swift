@@ -10,10 +10,12 @@ import SwiftUI
 
 final class Data_Model: ObservableObject{
     @Published var user = User(email: "", password: "",confirm_password: "",Username: "",Phone: "",Address: "",Nickname: "")
+    @Published var userID :  String! = ""
     @Published var isLogin: Bool = false
     @Published var LoginFail: Bool = false
     @Published var isEditSubmitting: Bool = false
     @Published var errorMessage: String?
+    
     init(){
         CheckLogin()
     }
@@ -55,6 +57,8 @@ final class Data_Model: ObservableObject{
             if user != nil {
                 self.isLogin = true
                 self.user.email = user?.email ?? ""
+                self.userID = user?.uid
+                print(self.userID ?? "ไม่มี")
             } else{
                 self.isLogin = false
                 self.LoginFail = false
