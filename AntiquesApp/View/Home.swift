@@ -10,6 +10,15 @@ import SwiftUI
 struct Home: View {
     @StateObject private var viewModel = Product_Model()
     @State private var searchText: String = ""
+    
+    var filteredProducts: [ProductCart] {
+        if searchText.isEmpty {
+            return viewModel.products
+        } else {
+            return viewModel.products.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+    
     var body: some View {
         VStack{
             HStack{
@@ -36,35 +45,34 @@ struct Home: View {
                         .cornerRadius(10)
                         .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.black, lineWidth: 1)
-                                            )
+                            .stroke(Color.black, lineWidth: 1)
+                    )
                 }.padding([.leading, .trailing, .top], 5)
                 
                 HStack {
                     Spacer()  // ผลักดันเนื้อหาไปด้านขวา
                     Button(action: {
-                      
                         print("Search button pressed")
                     }) {
                         Image(systemName: "magnifyingglass")
-                           
                     }
                 }
                 .padding(.trailing, 30)
                 .padding(.top,2)
             }
             .frame(maxWidth: .infinity, maxHeight: 60, alignment: .top)
-                ScrollView {
-                               LazyVStack {
-                                   ForEach(viewModel.products) { product in
-                                       ProductCardShow(product: product)
-                                   }
-                               }
-                           }
-                           .onAppear {
-                               viewModel.fetchProducts()
-                           }
-                Spacer()
+            
+            ScrollView {
+                LazyVStack {
+                    ForEach(filteredProducts) { product in
+                        ProductCardShow(product: product)
+                    }
+                }
+            }
+            .onAppear {
+                viewModel.fetchProducts()
+            }
+            Spacer()
         }
     }
 }

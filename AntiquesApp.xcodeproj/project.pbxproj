@@ -11,6 +11,7 @@
 		0D0F84E72BFE4F880061AA10 /* EditProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F84E62BFE4F880061AA10 /* EditProfilePage.swift */; };
 		0D0F84E92BFF179C0061AA10 /* EditProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F84E82BFF179C0061AA10 /* EditProductsView.swift */; };
 		0D0F84EB2BFF39850061AA10 /* ProductInCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F84EA2BFF39850061AA10 /* ProductInCartView.swift */; };
+		0D0F84ED2C01A6660061AA10 /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F84EC2C01A6660061AA10 /* PayView.swift */; };
 		0D6E2A6D2BF0BF5700F2A0CF /* AntiquesAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2A6C2BF0BF5700F2A0CF /* AntiquesAppApp.swift */; };
 		0D6E2A6F2BF0BF5700F2A0CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2A6E2BF0BF5700F2A0CF /* ContentView.swift */; };
 		0D6E2A712BF0BF5700F2A0CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D6E2A702BF0BF5700F2A0CF /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		0D0F84E62BFE4F880061AA10 /* EditProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePage.swift; sourceTree = "<group>"; };
 		0D0F84E82BFF179C0061AA10 /* EditProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductsView.swift; sourceTree = "<group>"; };
 		0D0F84EA2BFF39850061AA10 /* ProductInCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInCartView.swift; sourceTree = "<group>"; };
+		0D0F84EC2C01A6660061AA10 /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		0D6E2A692BF0BF5700F2A0CF /* AntiquesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntiquesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6E2A6C2BF0BF5700F2A0CF /* AntiquesAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntiquesAppApp.swift; sourceTree = "<group>"; };
 		0D6E2A6E2BF0BF5700F2A0CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				0D0F84E62BFE4F880061AA10 /* EditProfilePage.swift */,
 				0D0F84E82BFF179C0061AA10 /* EditProductsView.swift */,
 				0D0F84EA2BFF39850061AA10 /* ProductInCartView.swift */,
+				0D0F84EC2C01A6660061AA10 /* PayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				0D6E2A6F2BF0BF5700F2A0CF /* ContentView.swift in Sources */,
 				0D6E2AA02BF86FBF00F2A0CF /* ForgotPage.swift in Sources */,
 				0D0F84EB2BFF39850061AA10 /* ProductInCartView.swift in Sources */,
+				0D0F84ED2C01A6660061AA10 /* PayView.swift in Sources */,
 				0D6E2A6D2BF0BF5700F2A0CF /* AntiquesAppApp.swift in Sources */,
 				FB726A132BF8A91800CA0CAC /* ProductCart.swift in Sources */,
 				0D6E2A8C2BF0FBA500F2A0CF /* Cart.swift in Sources */,
