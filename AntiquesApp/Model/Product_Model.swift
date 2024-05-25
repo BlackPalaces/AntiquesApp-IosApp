@@ -188,7 +188,138 @@ final class Product_Model: ObservableObject{
                 }
             }
         }
-   }
+    func toggleFavorite(id: String) {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not logged in")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let userRef = db.collection("Users").document(userId)
+        let favoritesRef = userRef.collection("favorites")
+
+        // Check if the product is already in favorites
+        favoritesRef.whereField("productId", isEqualTo: id).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error checking favorite product: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let snapshot = snapshot else {
+                print("Snapshot is nil")
+                return
+            }
+            
+            if snapshot.isEmpty {
+                // Product not in favorites, add it
+                favoritesRef.addDocument(data: ["productId": id]) { error in
+                    if let error = error {
+                        print("Error adding product to favorites: \(error.localizedDescription)")
+                    } else {
+                        print("Product added to favorites successfully!")
+                    }
+                }
+            } else {
+                // Product already in favorites, remove it
+                for document in snapshot.documents {
+                    let favoriteId = document.documentID
+                    favoritesRef.document(favoriteId).delete { error in
+                        if let error = error {
+                            print("Error removing product from favorites: \(error.localizedDescription)")
+                        } else {
+                            print("Product removed from favorites successfully!")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @Published var favoriteProducts: [ProductCart] = []
+
+        func fetchFavoriteProducts() {
+            let db = Firestore.firestore()
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("User not logged in")
+                return
+            }
+            let userRef = db.collection("Users").document(userId)
+            let favoritesRef = userRef.collection("favorites")
+
+            favoritesRef.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error fetching favorites: \(error.localizedDescription)")
+                    return
+                }
+                guard let documents = querySnapshot?.documents else {
+                    print("No favorite products found")
+                    return
+                }
+
+                let productIds = documents.compactMap { $0["productId"] as? String }
+                self.loadFavoriteProducts(productIds: productIds)
+            }
+        }
+
+        private func loadFavoriteProducts(productIds: [String]) {
+            let db = Firestore.firestore()
+            let productsRef = db.collection("products")
+            
+            var fetchedProducts: [ProductCart] = []
+
+            let group = DispatchGroup()
+            for productId in productIds {
+                group.enter()
+                productsRef.document(productId).getDocument { (document, error) in
+                    if let document = document, document.exists, let product = try? document.data(as: ProductCart.self) {
+                        fetchedProducts.append(product)
+                    }
+                    group.leave()
+                }
+            }
+
+            group.notify(queue: .main) {
+                self.favoriteProducts = fetchedProducts
+            }
+        }
+    func removeFromFavorites(id: String) {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not logged in")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let userRef = db.collection("Users").document(userId)
+        let favoritesRef = userRef.collection("favorites")
+
+        favoritesRef.whereField("productId", isEqualTo: id).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error checking favorite product: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let snapshot = snapshot else {
+                print("Snapshot is nil")
+                return
+            }
+            
+            if !snapshot.isEmpty {
+                // Product found in favorites, remove it
+                for document in snapshot.documents {
+                    let favoriteId = document.documentID
+                    favoritesRef.document(favoriteId).delete { error in
+                        if let error = error {
+                            print("Error removing product from favorites: \(error.localizedDescription)")
+                        } else {
+                            print("Product removed from favorites successfully!")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    }
+   
 
 
 

@@ -1,18 +1,29 @@
-//
-//  Favorite.swift
-//  AntiquesApp
-//
-//  Created by Chinnaphat Dumpong on 12/5/2567 BE.
-//
-
 import SwiftUI
 
 struct Favorite: View {
+    @StateObject private var productModel = Product_Model()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if productModel.favoriteProducts.isEmpty {
+                Text("No favorite products")
+                    .font(.headline)
+                    .padding()
+            } else {
+                List(productModel.favoriteProducts) { product in
+                    ProductFavoriteCard(product: product)
+                }
+            }
+        }
+        .onAppear {
+            productModel.fetchFavoriteProducts()
+        }
+        .navigationBarTitle("Favorite Products", displayMode: .inline)
     }
 }
 
-#Preview {
-    Favorite()
+struct Favorite_Previews: PreviewProvider {
+    static var previews: some View {
+        Favorite()
+    }
 }
