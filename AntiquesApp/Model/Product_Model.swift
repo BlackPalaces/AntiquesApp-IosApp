@@ -167,8 +167,28 @@ final class Product_Model: ObservableObject{
             topViewController.present(alert, animated: true, completion: nil)
         }
     }
-
     
+    
+    func addToFavorites(id: String) {
+            let db = Firestore.firestore()
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("User not logged in")
+                return
+            }
+            let userRef = db.collection("Users").document(userId)
+            let favoritesRef = userRef.collection("favorites")
 
-}
+            favoritesRef.document(id).setData([
+                "productId": id
+            ]) { error in
+                if let error = error {
+                    print("Error adding product to favorites: \(error.localizedDescription)")
+                } else {
+                    print("Product added to favorites successfully!")
+                }
+            }
+        }
+   }
+
+
 

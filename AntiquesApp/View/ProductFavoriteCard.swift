@@ -1,8 +1,15 @@
+//
+//  ProductFavoriteCard.swift
+//  AntiquesApp
+//
+//  Created by 24 on 25/5/2567 BE.
+//
+
 import SwiftUI
 
-struct ProductCardShow: View {
+struct ProductFavoriteCard: View {
     var product: ProductCart
-    @StateObject private var viewModel = Product_Model()
+
     var body: some View {
         NavigationLink(destination: ProductDetails(product: product)) {
             HStack {
@@ -32,7 +39,7 @@ struct ProductCardShow: View {
                     Spacer()
                     VStack {
                         Button(action: {
-                            viewModel.addToFavorites(id: product.id!)
+                            print("Added to favorites")
                         }) {
                             Image(systemName: "heart.circle")
                                 .resizable()
@@ -64,8 +71,6 @@ struct ProductCardShow: View {
     }
 }
 
-struct ProductCardShow_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductCardShow(product: ProductCart(id: "1", name: "Mona", description: "A famous painting", price: 100.0, imageUrl: "", stock: 10))
-    }
+#Preview {
+    ProductFavoriteCard(product: ProductCart(id: "1", name: "Mona", description: "A famous painting", price: 100.0, imageUrl: "", stock: 10))
 }
