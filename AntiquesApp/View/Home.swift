@@ -22,10 +22,6 @@ struct Home: View {
     var body: some View {
         VStack{
             HStack{
-                Image(systemName: "list.bullet.circle.fill")
-                    .resizable()
-                    .frame(width:30, height: 30)
-                    .aspectRatio(contentMode: .fit)
                 Spacer()
                 Image(systemName: "cart.fill.badge.questionmark")
                     .resizable()

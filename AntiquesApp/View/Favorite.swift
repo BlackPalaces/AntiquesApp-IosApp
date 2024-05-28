@@ -5,13 +5,17 @@ struct Favorite: View {
 
     var body: some View {
         VStack {
-            if productModel.favoriteProducts.isEmpty {
-                Text("No favorite products")
-                    .font(.headline)
-                    .padding()
-            } else {
-                List(productModel.favoriteProducts) { product in
-                    ProductFavoriteCard(product: product)
+            ScrollView {
+                if productModel.favoriteProducts.isEmpty {
+                    Text("No favorite products")
+                        .font(.headline)
+                        .padding()
+                } else {
+                    LazyVStack {
+                        ForEach(productModel.favoriteProducts) { product in
+                            ProductFavoriteCard(product: product)
+                        }
+                    }
                 }
             }
         }

@@ -5,21 +5,28 @@ struct Cart: View {
     @State private var itemCount: Int = 0
     @State private var totalPrice: Double = 0.0
     @State private var totalStock: Int = 0
-
+    
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView {
-                    LazyVStack {
-                        ForEach(viewModel.products) { product in
-                            ProductInCartView(product: product, itemCount: $itemCount, totalPrice: $totalPrice, totalStock: $totalStock)
+                    if viewModel.Cartproducts.isEmpty {
+                        Text("กรุณาเพิ่มสินค้า")
+                            .padding()
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                    } else {
+                        LazyVStack {
+                            ForEach(viewModel.Cartproducts) { product in
+                                ProductInCartView(product: product, itemCount: $itemCount, totalPrice: $totalPrice, totalStock: $totalStock)
+                            }
                         }
                     }
                 }
                 .onAppear {
-                    viewModel.fetchProducts()
+                    viewModel.fetchCartProducts()
                 }
-
+                
                 HStack {
                     VStack {
                         HStack {
@@ -29,9 +36,9 @@ struct Cart: View {
                         }
                         .padding(.leading, 10)
                         .padding(.top, 5)
-
+                        
                         Spacer()
-
+                        
                         HStack {
                             Text("สินค้าที่ถูกเลือก")
                             Text("\(itemCount) รายการ")
@@ -41,7 +48,7 @@ struct Cart: View {
                         .padding(.bottom, 30)
                     }
                     .frame(height: 130)
-
+                    
                     VStack {
                         VStack {
                             Text("ยอดชำระ")
@@ -53,7 +60,7 @@ struct Cart: View {
                                 .multilineTextAlignment(.trailing)
                                 .padding(5)
                                 .border(Color.black)
-
+                            
                             NavigationLink(destination: PayView()) {
                                 Label("ชำระเงิน", systemImage: "basket.fill")
                                     .foregroundColor(.white)

@@ -38,7 +38,7 @@ struct ProductInCartView: View {
             VStack {
                 HStack {
                     Button(action: {
-                        viewModel.deleteProduct(id: product.id!)
+                        viewModel.removeFromCart(id: product.id!)
                         resetCart()
                     }) {
                         Image(systemName: "cart.fill.badge.minus")

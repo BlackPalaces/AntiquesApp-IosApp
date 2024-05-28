@@ -55,7 +55,8 @@ struct Profile: View {
                     .background(Color.black)
                 
                 VStack{
-                    Text("Madam")
+                    Text(dataModel.user.Nickname ?? "ไม่มีชื่อเล่น")
+                        .foregroundStyle(Color.black)
                         .padding(.top ,100)
                         .bold()
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
@@ -75,7 +76,8 @@ struct Profile: View {
                             .padding(.horizontal,10)
                             
                             VStack{
-                                Text("name@gmail.com")
+                                Text(dataModel.user.Username ?? "ไม่มีชื่อ")
+                                    .foregroundStyle(Color.black)
                                     .lineLimit(1)
                             }.frame(width: 170 , alignment: .leading)
                             
@@ -95,7 +97,8 @@ struct Profile: View {
                             .padding(.horizontal,10)
                             
                             VStack{
-                                Text("0999999999")
+                                Text(dataModel.user.Phone ?? "ไม่พบหมายเลขโทรศัพท์")
+                                    .foregroundStyle(Color.black)
                                     .lineLimit(1)
                             }.frame(width: 170 , alignment: .leading)
                             
@@ -115,7 +118,8 @@ struct Profile: View {
                             .padding(.horizontal,10)
                             
                             VStack{
-                                Text("name@gmail.com")
+                                Text(dataModel.user.email)
+                                    .foregroundStyle(Color.black)
                                     .lineLimit(1)
                             }.frame(width: 170 , alignment: .leading)
                             
@@ -134,13 +138,14 @@ struct Profile: View {
                             .frame(width: 170,alignment: .leading)
                             .padding(.horizontal,10)
                             VStack{
-                                Text("บ้านซอยแดง แตงแมงแตงแม๊งแต่งแน่งแนง")
+                                Text(dataModel.user.Address ?? "ไม่พบที่อยู่").foregroundStyle(Color.black)
                             }.padding(.horizontal,10)
                             
                         }
                     }
                 }
                 Spacer()
+                
                 
                 NavigationLink(
                     destination: AdminPage(),
@@ -157,6 +162,9 @@ struct Profile: View {
                     }
                 )
             }
+            .onAppear {
+                    dataModel.fetchUserinfo()
+                }
         }
     }
 }

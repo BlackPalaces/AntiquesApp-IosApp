@@ -163,4 +163,52 @@ final class Data_Model: ObservableObject{
             }
         }
     }
+    
+    func fetchUserinfo() {
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.uid {
+            let userRef = db.collection("Users").document(userID)
+            userRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    if let data = document.data() {
+                        DispatchQueue.main.async {
+                            self.user.Username = data["Username"] as? String ?? ""
+                            self.user.Nickname = data["Nickname"] as? String ?? ""
+                            self.user.Phone = data["Phone"] as? String ?? ""
+                            self.user.Address = data["Address"] as? String ?? ""
+                        }
+                    } else {
+                        print("Document data was empty.")
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+    }
+
+    func loaduserInfo() {
+        if let userID = Auth.auth().currentUser?.uid {
+            let db = Firestore.firestore()
+            let userRef = db.collection("Users").document(userID)
+            
+            userRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    if let data = document.data() {
+                        DispatchQueue.main.async {
+                            self.user.Nickname = data["Nickname"] as? String ?? ""
+                            self.user.Username = data["Username"] as? String ?? ""
+                            self.user.Phone = data["Phone"] as? String ?? ""
+                            self.user.Address = data["Address"] as? String ?? ""
+                        }
+                    } else {
+                        print("Document data was empty.")
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+    }
+
 }

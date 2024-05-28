@@ -188,6 +188,7 @@ final class Product_Model: ObservableObject{
                 }
             }
         }
+    
     func toggleFavorite(id: String) {
         guard let userId = Auth.auth().currentUser?.uid else {
             print("User not logged in")
@@ -317,8 +318,105 @@ final class Product_Model: ObservableObject{
             }
         }
     }
-
+    
+    func AddtoCart(id: String) {
+        let db = Firestore.firestore()
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not logged in")
+            return
+        }
+        let userRef = db.collection("Users").document(userId)
+        let cartRef = userRef.collection("MyCart")
+        
+        // ตรวจสอบว่ามีสินค้า id นี้อยู่ในตะกร้าหรือไม่
+        cartRef.document(id).getDocument { (document, error) in
+            if let document = document, document.exists {
+                // ถ้ามีสินค้า id นี้อยู่ในตะกร้าแล้ว
+                print("Product is already in the cart")
+            } else {
+                // ถ้าไม่มีสินค้า id นี้ในตะกร้า ให้เพิ่มเข้าไป
+                cartRef.document(id).setData(["addedAt": FieldValue.serverTimestamp()]) { error in
+                    if let error = error {
+                        print("Error adding product to cart: \(error.localizedDescription)")
+                    } else {
+                        print("Product added to cart successfully")
+                    }
+                }
+            }
+        }
     }
+
+    @Published var Cartproducts: [ProductCart] = []
+
+    func fetchCartProducts() {
+            let db = Firestore.firestore()
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("User not logged in")
+                return
+            }
+            let userRef = db.collection("Users").document(userId)
+            let cartRef = userRef.collection("MyCart")
+            
+            // Fetch product ids from MyCart
+            cartRef.getDocuments { (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents in MyCart")
+                    return
+                }
+                
+                let productIds = documents.map { $0.documentID }
+                
+                // Check if productIds is not empty
+                guard !productIds.isEmpty else {
+                    self.Cartproducts = []
+                    print("No products in the cart")
+                    return
+                }
+                
+                // Fetch product details for each product id
+                let productsCollection = db.collection("products")
+                productsCollection.whereField(FieldPath.documentID(), in: productIds).getDocuments { (querySnapshot, error) in
+                    guard let documents = querySnapshot?.documents else {
+                        print("No products found for the cart")
+                        return
+                    }
+                    
+                    self.Cartproducts = documents.compactMap { queryDocumentSnapshot -> ProductCart? in
+                        do {
+                            let product = try queryDocumentSnapshot.data(as: ProductCart.self)
+                            print("Fetched product: \(product)")
+                            return product
+                        } catch {
+                            print("Error decoding product: \(error)")
+                            return nil
+                        }
+                    }
+                    
+                    print("Total products fetched for the cart: \(self.Cartproducts.count)")
+                }
+            }
+        }
+    
+    func removeFromCart(id: String) {
+        let db = Firestore.firestore()
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not logged in")
+            return
+        }
+        let userRef = db.collection("Users").document(userId)
+        let cartRef = userRef.collection("MyCart")
+        
+        // ลบเอกสารที่มี id ตรงกับสินค้าที่ต้องการลบ
+        cartRef.document(id).delete { error in
+            if let error = error {
+                print("Error removing product from cart: \(error.localizedDescription)")
+            } else {
+                print("Product removed from cart successfully")
+            }
+        }
+    }
+}
+    
    
 
 

@@ -48,6 +48,9 @@ struct EditProfilePage: View {
             }
             .disabled(UserInfo.isEditSubmitting)
         }
+        .onAppear {
+               UserInfo.loaduserInfo()
+           }
     }
 }
 

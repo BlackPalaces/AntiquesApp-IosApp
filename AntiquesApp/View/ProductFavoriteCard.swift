@@ -43,7 +43,7 @@ struct ProductFavoriteCard: View {
                             .padding(.leading, 40)
                     }
                     Button(action: {
-                        print("Add to cart pressed")
+                        viewModel.AddtoCart(id: product.id!)
                     }) {
                         Label("Cart", systemImage: "cart.badge.plus")
                             .foregroundColor(.white)
