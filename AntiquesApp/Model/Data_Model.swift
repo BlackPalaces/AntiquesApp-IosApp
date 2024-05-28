@@ -7,9 +7,10 @@
 import Foundation
 import Firebase
 import SwiftUI
+import FirebaseStorage
 
 final class Data_Model: ObservableObject{
-    @Published var user = User(email: "", password: "",confirm_password: "",Username: "",Phone: "",Address: "",Nickname: "")
+    @Published var user = User(email: "", password: "",confirm_password: "",Username: "",Phone: "",Address: "",profilePicURL:"", backgroundPicURL:"", Nickname: "")
     @Published var userID :  String! = ""
     @Published var isLogin: Bool = false
     @Published var LoginFail: Bool = false
@@ -128,41 +129,144 @@ final class Data_Model: ObservableObject{
         }
     }
     
-    
-    func EditProfile() {
-        isEditSubmitting = true
-        errorMessage = nil
-        
-        let db = Firestore.firestore()
-        
-        if let userID = Auth.auth().currentUser?.uid {
-            let userRef = db.collection("Users").document(userID)
-            isEditSubmitting = false
-            // ดึงข้อมูลปัจจุบันของผู้ใช้จาก Firestore
-            userRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    var SendEditProfile: [String: Any] = document.data() ?? [:]
-                    
-                    // อัปเดตข้อมูลที่ไม่ได้ระบุใหม่ในแอพพลิเคชัน ให้ใช้ค่าเดิมจาก Firestore
-                    SendEditProfile["Username"] = self.user.Username != "" ? self.user.Username : SendEditProfile["Username"]
-                    SendEditProfile["Nickname"] = self.user.Nickname != "" ? self.user.Nickname : SendEditProfile["Nickname"]
-                    SendEditProfile["Phone"] = self.user.Phone != "" ? self.user.Phone : SendEditProfile["Phone"]
-                    SendEditProfile["Address"] = self.user.Address != "" ? self.user.Address : SendEditProfile["Address"]
-                    
-                    // อัปเดตข้อมูลใน Firestore
-                    userRef.updateData(SendEditProfile) { error in
-                        if let error = error {
-                            self.errorMessage = "Error updating document: \(error)"
-                        } else {
-                            self.errorMessage = "Document updated successfully!"
-                        }
+    func uploadImageToStorage(image: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let imageRef = storageRef.child("profile_images/\(UUID().uuidString).jpg")
+
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+            completion(.failure(NSError(domain: "com.example", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to convert image to data"])))
+            return
+        }
+
+        imageRef.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                imageRef.downloadURL { url, error in
+                    if let url = url {
+                        completion(.success(url))
+                    } else if let error = error {
+                        completion(.failure(error))
                     }
-                } else {
-                    self.errorMessage = "Document does not exist"
                 }
             }
         }
     }
+    
+    func editProfile(profileImage: UIImage?, backgroundImage: UIImage?) {
+        isEditSubmitting = true
+        errorMessage = nil
+        
+        guard let userID = Auth.auth().currentUser?.uid else {
+            self.errorMessage = "User is not logged in."
+            return
+        }
+
+        let db = Firestore.firestore()
+        let userRef = db.collection("Users").document(userID)
+
+        // Upload profile image if selected
+        if let profileImage = profileImage {
+            uploadImageToStorage(image: profileImage) { result in
+                switch result {
+                case .success(let url):
+                    self.user.profilePicURL = url.absoluteString
+                    // Update profile data in Firestore
+                    self.updateUserProfile(userRef: userRef)
+                case .failure(let error):
+                    self.errorMessage = "Error uploading profile image: \(error.localizedDescription)"
+                    self.isEditSubmitting = false
+                }
+            }
+        } else {
+            // No profile image selected, update profile data directly
+            updateUserProfile(userRef: userRef)
+        }
+
+        // Upload background image if selected
+        if let backgroundImage = backgroundImage {
+            uploadImageToStorage(image: backgroundImage) { result in
+                switch result {
+                case .success(let url):
+                    self.user.backgroundPicURL = url.absoluteString
+                    // Update profile data in Firestore
+                    self.updateUserProfile(userRef: userRef)
+                case .failure(let error):
+                    self.errorMessage = "Error uploading background image: \(error.localizedDescription)"
+                    self.isEditSubmitting = false
+                }
+            }
+        } else {
+            // No background image selected, update profile data directly
+            updateUserProfile(userRef: userRef)
+        }
+    }
+
+
+    func updateUserProfile(userRef: DocumentReference) {
+        var updatedProfileData: [String: Any] = [
+            "Username": self.user.Username,
+            "Nickname": self.user.Nickname,
+            "Phone": self.user.Phone,
+            "Address": self.user.Address
+        ]
+        // Update profile picture URL if available
+        if let profilePicURL = self.user.profilePicURL, !profilePicURL.isEmpty {
+            updatedProfileData["profilePicURL"] = profilePicURL
+        }
+        // Update background picture URL if available
+        if let backgroundPicURL = self.user.backgroundPicURL, !backgroundPicURL.isEmpty {
+            updatedProfileData["backgroundPicURL"] = backgroundPicURL
+        }
+
+        // Update profile data in Firestore
+        userRef.updateData(updatedProfileData) { error in
+            if let error = error {
+                self.errorMessage = "Error updating profile: \(error.localizedDescription)"
+            } else {
+                self.errorMessage = "Profile updated successfully!"
+            }
+            self.isEditSubmitting = false
+        }
+    }
+
+    
+//    func EditProfile() {
+//        isEditSubmitting = true
+//        errorMessage = nil
+//        
+//        let db = Firestore.firestore()
+//        
+//        if let userID = Auth.auth().currentUser?.uid {
+//            let userRef = db.collection("Users").document(userID)
+//            isEditSubmitting = false
+//            // ดึงข้อมูลปัจจุบันของผู้ใช้จาก Firestore
+//            userRef.getDocument { (document, error) in
+//                if let document = document, document.exists {
+//                    var SendEditProfile: [String: Any] = document.data() ?? [:]
+//                    
+//                    // อัปเดตข้อมูลที่ไม่ได้ระบุใหม่ในแอพพลิเคชัน ให้ใช้ค่าเดิมจาก Firestore
+//                    SendEditProfile["Username"] = self.user.Username != "" ? self.user.Username : SendEditProfile["Username"]
+//                    SendEditProfile["Nickname"] = self.user.Nickname != "" ? self.user.Nickname : SendEditProfile["Nickname"]
+//                    SendEditProfile["Phone"] = self.user.Phone != "" ? self.user.Phone : SendEditProfile["Phone"]
+//                    SendEditProfile["Address"] = self.user.Address != "" ? self.user.Address : SendEditProfile["Address"]
+//                    SendEditProfile["profilePicURL"] = self.user.profilePicURL != "" ? self.user.Address : SendEditProfile["profilePicURL"]
+//                    SendEditProfile["backgroundPicURL"] = self.user.backgroundPicURL != "" ? self.user.Address : SendEditProfile["backgroundPicURL"]
+//                    // อัปเดตข้อมูลใน Firestore
+//                    userRef.updateData(SendEditProfile) { error in
+//                        if let error = error {
+//                            self.errorMessage = "Error updating document: \(error)"
+//                        } else {
+//                            self.errorMessage = "Document updated successfully!"
+//                        }
+//                    }
+//                } else {
+//                    self.errorMessage = "Document does not exist"
+//                }
+//            }
+//        }
+//    }
     
     func fetchUserinfo() {
         let db = Firestore.firestore()
@@ -176,6 +280,8 @@ final class Data_Model: ObservableObject{
                             self.user.Nickname = data["Nickname"] as? String ?? ""
                             self.user.Phone = data["Phone"] as? String ?? ""
                             self.user.Address = data["Address"] as? String ?? ""
+                            self.user.profilePicURL = data["profilePicURL"] as? String ?? "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                            self.user.backgroundPicURL = data["backgroundPicURL"] as? String ?? "https://wallpapertag.com/wallpaper/middle/6/0/e/376447-hd-background-images-1920x1080-for-pc.jpg"
                         }
                     } else {
                         print("Document data was empty.")

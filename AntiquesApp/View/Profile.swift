@@ -18,10 +18,24 @@ struct Profile: View {
                 ZStack{
                     VStack{
                         ZStack{
-                            Image("Snow")
-                                .resizable()
-                                .frame(width: UIScreen.main.bounds.width ,height: 250)
-                                .previewInterfaceOrientation(.landscapeLeft)
+                            AsyncImage(url: URL(string: dataModel.user.backgroundPicURL!)) { phase in
+                                switch phase {
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: UIScreen.main.bounds.width, height: 250)
+                                        .previewInterfaceOrientation(.landscapeLeft)
+                                case .failure(let error):
+                                    Text("Failed to load image: \(error.localizedDescription)")
+                                case .empty:
+                                    Text("Loading...")
+                                @unknown default:
+                                    Text("Loading...")
+                                }
+                            }
+
+
                             HStack{
                                 Spacer()
                                 
@@ -45,12 +59,23 @@ struct Profile: View {
                                 .padding(.trailing,10)
                         }
                     }
-                    Image("Mona")
-                        .resizable()
-                        .frame(width: 200 ,height: 200)
-                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                        .offset(y: 120)
-                    
+                    AsyncImage(url: URL(string:dataModel.user.profilePicURL!)) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .frame(width: 200, height: 200)
+                                .clipShape(Circle())
+                                .offset(y: 120)
+                        case .failure(let error):
+                            Text("Failed to load image: \(error.localizedDescription)")
+                        case .empty:
+                            Text("Loading...")
+                        @unknown default:
+                            Text("Loading...")
+                        }
+                    }
+
                 }.frame(width: UIScreen.main.bounds.width,alignment: .top)
                     .background(Color.black)
                 
