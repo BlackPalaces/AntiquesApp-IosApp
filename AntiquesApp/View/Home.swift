@@ -10,7 +10,7 @@ import SwiftUI
 struct Home: View {
     @StateObject private var viewModel = Product_Model()
     @State private var searchText: String = ""
-    
+    @State private var cartItemCount: Int = 0
     var filteredProducts: [ProductCart] {
         if searchText.isEmpty {
             return viewModel.products
@@ -23,13 +23,23 @@ struct Home: View {
         VStack{
             HStack{
                 Spacer()
-                Image(systemName: "cart.fill.badge.questionmark")
-                    .resizable()
-                    .frame(width:30, height: 30)
-                    .aspectRatio(contentMode: .fit)
+                NavigationLink(destination: Cart()) {
+                ZStack{
+                        Image(systemName: "cart.fill.badge.questionmark")
+                            .resizable()
+                            .frame(width:30, height: 30)
+                            .aspectRatio(contentMode: .fit)
+                        Text("\(viewModel.Cartproducts.count)")
+                            .font(.caption2)
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .background(Color.red)
+                            .clipShape(Circle())
+                            .offset(x: 7, y: -7)
+                    }
+                }.foregroundColor(Color.black)
             }.padding(10)
                 .frame(alignment: .top)
-            
             ZStack {
                 HStack {
                     TextField("Search...", text: $searchText)
@@ -40,9 +50,9 @@ struct Home: View {
                         .background(Color(.white))
                         .cornerRadius(10)
                         .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 1)
-                    )
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
                 }.padding([.leading, .trailing, .top], 5)
                 
                 HStack {
@@ -67,6 +77,7 @@ struct Home: View {
             }
             .onAppear {
                 viewModel.fetchProducts()
+                viewModel.fetchCartProducts()
             }
             Spacer()
         }
