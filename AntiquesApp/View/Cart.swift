@@ -61,7 +61,7 @@ struct Cart: View {
                                 .padding(5)
                                 .border(Color.black)
                             
-                            NavigationLink(destination: PayView()) {
+                            NavigationLink(destination: PayView(selectedProducts: viewModel.Cartproducts, totalPrice: totalPrice)) {
                                 Label("ชำระเงิน", systemImage: "basket.fill")
                                     .foregroundColor(.white)
                                     .bold()
