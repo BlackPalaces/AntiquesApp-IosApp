@@ -32,12 +32,12 @@
 		0D6E2AA02BF86FBF00F2A0CF /* ForgotPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2A9F2BF86FBF00F2A0CF /* ForgotPage.swift */; };
 		0D6E2AA22BFA4A5E00F2A0CF /* Product_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2AA12BFA4A5E00F2A0CF /* Product_Model.swift */; };
 		0D6E2AA42BFA4DBA00F2A0CF /* AdminPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E2AA32BFA4DBA00F2A0CF /* AdminPage.swift */; };
-		0D8E52822C04DC53008069D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D8E52812C04DC53008069D2 /* GoogleService-Info.plist */; };
 		0DD01B1B2BFD0B8700D442DE /* ProductCardShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD01B1A2BFD0B8700D442DE /* ProductCardShow.swift */; };
 		0DD01B1D2BFD185900D442DE /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD01B1C2BFD185900D442DE /* AddProductView.swift */; };
 		FB726A112BF8A37800CA0CAC /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB726A102BF8A37800CA0CAC /* ProductCard.swift */; };
 		FB726A132BF8A91800CA0CAC /* ProductCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB726A122BF8A91800CA0CAC /* ProductCart.swift */; };
 		FB726A1A2BF8AE7700CA0CAC /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB726A192BF8AE7700CA0CAC /* ProductDetails.swift */; };
+		FBD770E82C0596E600B07C65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBD770E72C0596E600B07C65 /* GoogleService-Info.plist */; };
 		FBDB9A9A2C01D80700A9157C /* ProductFavoriteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDB9A992C01D80700A9157C /* ProductFavoriteCard.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,12 +63,12 @@
 		0D6E2A9F2BF86FBF00F2A0CF /* ForgotPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPage.swift; sourceTree = "<group>"; };
 		0D6E2AA12BFA4A5E00F2A0CF /* Product_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product_Model.swift; sourceTree = "<group>"; };
 		0D6E2AA32BFA4DBA00F2A0CF /* AdminPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPage.swift; sourceTree = "<group>"; };
-		0D8E52812C04DC53008069D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DD01B1A2BFD0B8700D442DE /* ProductCardShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardShow.swift; sourceTree = "<group>"; };
 		0DD01B1C2BFD185900D442DE /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		FB726A102BF8A37800CA0CAC /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
 		FB726A122BF8A91800CA0CAC /* ProductCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCart.swift; sourceTree = "<group>"; };
 		FB726A192BF8AE7700CA0CAC /* ProductDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
+		FBD770E72C0596E600B07C65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FBDB9A992C01D80700A9157C /* ProductFavoriteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFavoriteCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +115,7 @@
 		0D6E2A6B2BF0BF5700F2A0CF /* AntiquesApp */ = {
 			isa = PBXGroup;
 			children = (
-				0D8E52812C04DC53008069D2 /* GoogleService-Info.plist */,
+				FBD770E72C0596E600B07C65 /* GoogleService-Info.plist */,
 				0D6E2A7C2BF0FA1A00F2A0CF /* Model */,
 				0D6E2A7D2BF0FA2100F2A0CF /* View */,
 				0D6E2A702BF0BF5700F2A0CF /* Assets.xcassets */,
@@ -239,8 +239,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D6E2A742BF0BF5700F2A0CF /* Preview Assets.xcassets in Resources */,
-				0D8E52822C04DC53008069D2 /* GoogleService-Info.plist in Resources */,
 				0D6E2A712BF0BF5700F2A0CF /* Assets.xcassets in Resources */,
+				FBD770E82C0596E600B07C65 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
