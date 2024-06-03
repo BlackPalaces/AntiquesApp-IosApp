@@ -46,6 +46,9 @@ struct AddProductView: View {
     }
 }
 
-#Preview {
-    AddProductView().environmentObject(Product_Model())
+struct AddProductView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddProductView()
+            .environmentObject(Product_Model())
+    }
 }

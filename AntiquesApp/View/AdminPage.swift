@@ -17,13 +17,14 @@ struct AdminPage: View {
                     .font(.title)
                 VStack{
                     NavigationLink(destination: AddProductView()) {
-                        Label("Add Product", systemImage: "plus.circle")
-                            .foregroundColor(.white)
-                            .bold()
-                            .frame(width: 300, height: 40)
-                            .padding(5)
-                            .background(Color.blue)
-                            .cornerRadius(6)
+                        Label(
+                            title: { Text("Add Product").bold().foregroundColor(.white) },
+                            icon: { Image(systemName: "plus.circle").foregroundColor(.white) }
+                        )
+                        .frame(width: 300, height: 40)
+                        .padding(5)
+                        .background(Color.blue)
+                        .cornerRadius(6)
                     }
                 }
                 .frame(width:390, height: 100)
@@ -47,9 +48,14 @@ struct AdminPage: View {
     }
 }
 
-#Preview {
-    AdminPage().frame(maxHeight: 800 - (UIApplication.shared.connectedScenes.filter
-                                        { $0.activationState == .foregroundActive}
-        .map {$0 as? UIWindowScene}
-        .compactMap{ $0?.statusBarManager?.statusBarFrame.height}.first ?? 0))
+struct AdminPage_Previews: PreviewProvider {
+    static var previews: some View {
+        let maxHeight = 800 - (UIApplication.shared.connectedScenes
+                                .filter { $0.activationState == .foregroundActive }
+                                .compactMap { $0 as? UIWindowScene }
+                                .compactMap { $0.statusBarManager?.statusBarFrame.height }
+                                .first ?? 0)
+        return AdminPage()
+            .frame(maxHeight: maxHeight)
+    }
 }

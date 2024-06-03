@@ -50,7 +50,6 @@ struct ProductInCartView: View {
                     }
                     .padding(.top, 10)
                     .padding(.leading, 10)
-                    
                     Spacer()
                     
                     VStack {
@@ -134,8 +133,7 @@ struct ProductInCartView_Previews: PreviewProvider {
                 description: "A famous painting",
                 price: 100.0,
                 imageUrl: "https://i.pinimg.com/originals/82/d0/4d/82d04df570ede6802350a931917bb155.jpg",
-                stock: 10
-            ),
+                stock: 10),
             itemCount: .constant(0),
             totalPrice: .constant(0),
             totalStock: .constant(0)

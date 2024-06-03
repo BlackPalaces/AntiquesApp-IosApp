@@ -81,10 +81,12 @@ struct Profile: View {
                 
                 VStack{
                     Text(dataModel.user.Nickname ?? "ไม่มีชื่อเล่น")
+                        .bold()
                         .foregroundStyle(Color.black)
                         .padding(.top ,100)
-                        .bold()
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .font(.title)
+                        
+
                     VStack{
                         HStack{
                             HStack{

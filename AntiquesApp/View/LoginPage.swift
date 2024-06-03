@@ -24,8 +24,9 @@ struct LoginPage: View {
                         .bold()
                     VStack{
                         Text("Email")
-                            .frame(maxWidth: .infinity, alignment: .leading) // กำหนดให้ข้อความชิดซ้าย
                             .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading) // กำหนดให้ข้อความชิดซ้าย
+                            
                         
                         VStack{
                             HStack{
@@ -41,8 +42,9 @@ struct LoginPage: View {
                             )
                         }
                         Text("Password")
-                            .frame(maxWidth: .infinity, alignment: .leading)
                             .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
                         VStack {
                             HStack {
                                 SecureField("", text: $dataModel.user.password)
@@ -67,26 +69,35 @@ struct LoginPage: View {
                             
                     }
                     
-                    Button(action: {print("Login")
+                    Button(action: {
+                        print("Login")
                         dataModel.MyLogin()
                     }) {
-                        HStack{
-                            Label("Log In", systemImage: "nil")}
-                    }.padding().frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,maxWidth: .infinity).background(Color.white)
+                        HStack {
+                            Label("Log In", systemImage: "person.fill")
+                        }
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .background(Color.white)
                         .font(.system(size: 24))
                         .foregroundColor(.black)
-                        .bold().cornerRadius(40)
-                        .padding(.top,10)
-                    if dataModel.LoginFail{
-                        Text("Login Failed!!").foregroundColor(.red)
+                        .cornerRadius(40)
+                        .padding(.top, 10)
                     }
+
+                    if dataModel.LoginFail {
+                        Text("Login Failed!!")
+                            .foregroundColor(.red)
+                    }
+
                     NavigationLink(destination: RegisterPage()
                         .environmentObject(Data_Model())) {
-                        Text("Don't have a account Register").foregroundColor(.white)
-                            .font(.system(size: 16,weight: .light,design: .serif))
+                        Text("Don't have an account? Register")
+                            .foregroundColor(.white)
+                            .font(.system(size: 16, weight: .light, design: .serif))
                             .padding(5)
-                            
                     }
+
                     
                 }.frame(width: 300,height: 370).padding(20)
                     .background(Color(red: 0.016, green: 0.014, blue: 0.01, opacity: 0.3))

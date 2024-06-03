@@ -37,12 +37,15 @@ struct ProductDetails: View {
                         Button(action: {
                             viewModel.AddtoCart(id: product.id!)
                         }) {
-                            Label("Cart", systemImage: "cart.badge.plus")
+                            Label("", systemImage: "cart.badge.plus")
                                 .foregroundColor(.white)
-                                .bold()
                                 .frame(width: 250, height: 50)
                                 .background(Color.black)
                                 .cornerRadius(60)
+                                .overlay(
+                                    Text("Cart")
+                                        .bold()
+                                )
                         }
                         Button(action: {
                             viewModel.addToFavorites(id: product.id!)

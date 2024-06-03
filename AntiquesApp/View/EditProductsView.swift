@@ -59,6 +59,9 @@ struct EditProductsView: View {
     }
 }
 
-#Preview {
-    EditProductsView(productID: "1").environmentObject(Product_Model())
+struct EditProductsView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditProductsView(productID: "1")
+            .environmentObject(Product_Model())
+    }
 }

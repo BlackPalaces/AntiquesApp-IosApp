@@ -16,10 +16,11 @@ struct ProductCardShow: View {
                 VStack {
                     VStack(alignment: .leading) {
                         Text(product.name)
+                            .bold()
                             .font(.system(size: 25))
                             .multilineTextAlignment(.trailing)
                             .lineLimit(2)
-                            .bold()
+            
                         Text("\(String(format: "%.2f", product.price)) Bath")
                             .font(.headline)
                             .multilineTextAlignment(.trailing)
@@ -43,12 +44,13 @@ struct ProductCardShow: View {
                             viewModel.AddtoCart(id: product.id!)
                         }) {
                             Label("Cart", systemImage: "cart.badge.plus")
+                                .font(Font.body.bold()) // Use the font modifier to make the text bold
                                 .foregroundColor(.white)
-                                .bold()
                                 .frame(width: 100, height: 50)
                                 .background(Color.blue)
                                 .cornerRadius(6)
                         }
+
                     }
                     .frame(width: 150, height: 150, alignment: .bottomTrailing)
                     .padding(10)

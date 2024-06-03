@@ -5,6 +5,7 @@ struct Cart: View {
     @State private var itemCount: Int = 0
     @State private var totalPrice: Double = 0.0
     @State private var totalStock: Int = 0
+    @State private var selectedProducts: [ProductCart] = []
     
     var body: some View {
         NavigationView {
@@ -52,8 +53,8 @@ struct Cart: View {
                     VStack {
                         VStack {
                             Text("ยอดชำระ")
-                                .multilineTextAlignment(.trailing)
                                 .bold()
+                                .multilineTextAlignment(.trailing)
                                 .padding(.top, 5)
                             Spacer()
                             Text("\(totalPrice, specifier: "%.2f")")
@@ -61,15 +62,28 @@ struct Cart: View {
                                 .padding(5)
                                 .border(Color.black)
                             
-                            NavigationLink(destination: PayView()) {
-                                Label("ชำระเงิน", systemImage: "basket.fill")
-                                    .foregroundColor(.white)
+                            if (itemCount >= 1)
+                            {
+                            NavigationLink(destination: PayView(selectedProducts: viewModel.Cartproducts, totalPrice: totalPrice)) {
+                                Text("ชำระเงิน")
                                     .bold()
+                                    .foregroundColor(.white)
                                     .frame(width: 100, height: 40)
                                     .background(Color.green)
                                     .cornerRadius(6)
                             }
                             .padding(.bottom, 5)
+                            } else {
+
+                                    Text("ชำระเงิน")
+                                        .bold()
+                                        .foregroundColor(.white)
+                                        .frame(width: 100, height: 40)
+                                        .background(Color.gray)
+                                        .cornerRadius(6)
+                                        .padding(.bottom, 5)
+                            }
+
                         }
                         .padding(.trailing, 20)
                     }

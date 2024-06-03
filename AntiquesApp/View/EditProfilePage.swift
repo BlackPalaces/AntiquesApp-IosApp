@@ -137,6 +137,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 
     }
 }
-#Preview {
-    EditProfilePage().environmentObject(Data_Model())
+
+struct EditProfilePage_Previews: PreviewProvider {
+    static var previews: some View {
+        EditProfilePage()
+    }
 }

@@ -25,7 +25,7 @@ struct Home: View {
                 Spacer()
                 NavigationLink(destination: Cart()) {
                 ZStack{
-                        Image(systemName: "cart.fill.badge.questionmark")
+                        Image(systemName: "cart.fill")
                             .resizable()
                             .frame(width:30, height: 30)
                             .aspectRatio(contentMode: .fit)
@@ -84,6 +84,8 @@ struct Home: View {
     }
 }
 
-#Preview {
-    Home()
+struct Home_Previews: PreviewProvider {
+    static var previews: some View {
+        Home()
+    }
 }

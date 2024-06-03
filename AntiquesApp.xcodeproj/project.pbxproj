@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BABA3252C0DD6BB0017DEB4 /* OrderProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BABA3242C0DD6BB0017DEB4 /* OrderProduct.swift */; };
 		0D0F84E52BFDEB9B0061AA10 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0D0F84E42BFDEB9B0061AA10 /* FirebaseFirestoreSwift */; };
 		0D0F84E72BFE4F880061AA10 /* EditProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F84E62BFE4F880061AA10 /* EditProfilePage.swift */; };
 		0D0F84E92BFF179C0061AA10 /* EditProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F84E82BFF179C0061AA10 /* EditProductsView.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BABA3242C0DD6BB0017DEB4 /* OrderProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProduct.swift; sourceTree = "<group>"; };
 		0D0F84E62BFE4F880061AA10 /* EditProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePage.swift; sourceTree = "<group>"; };
 		0D0F84E82BFF179C0061AA10 /* EditProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductsView.swift; sourceTree = "<group>"; };
 		0D0F84EA2BFF39850061AA10 /* ProductInCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInCartView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				0D6E2A912BF0FC0D00F2A0CF /* Data_Model.swift */,
 				FB726A122BF8A91800CA0CAC /* ProductCart.swift */,
 				0D6E2AA12BFA4A5E00F2A0CF /* Product_Model.swift */,
+				0BABA3242C0DD6BB0017DEB4 /* OrderProduct.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				FB726A1A2BF8AE7700CA0CAC /* ProductDetails.swift in Sources */,
 				FBDB9A9A2C01D80700A9157C /* ProductFavoriteCard.swift in Sources */,
 				0D6E2A8E2BF0FBB300F2A0CF /* Favorite.swift in Sources */,
+				0BABA3252C0DD6BB0017DEB4 /* OrderProduct.swift in Sources */,
 				0D6E2A942BF0FC7600F2A0CF /* User.swift in Sources */,
 				0D6E2A982BF0FF0400F2A0CF /* RegisterPage.swift in Sources */,
 				0D6E2A922BF0FC0D00F2A0CF /* Data_Model.swift in Sources */,
@@ -333,7 +337,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -390,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -485,7 +489,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.25.0;
+				minimumVersion = 10.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

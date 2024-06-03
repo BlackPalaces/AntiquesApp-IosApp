@@ -19,10 +19,12 @@ struct ProductFavoriteCard: View {
                 VStack {
                     VStack(alignment: .leading) {
                         Text(product.name)
+                            .bold()
                             .font(.system(size: 25))
                             .multilineTextAlignment(.trailing)
                             .lineLimit(2)
-                            .bold()
+
+
                         Text("\(String(format: "%.2f", product.price)) Bath")
                             .font(.headline)
                             .multilineTextAlignment(.trailing)
@@ -46,12 +48,13 @@ struct ProductFavoriteCard: View {
                         Button(action: {
                             viewModel.AddtoCart(id: product.id!)
                         }) {
-                            Label("Cart", systemImage: "cart.badge.plus")
-                                .foregroundColor(.white)
-                                .bold()
-                                .frame(width: 100, height: 50)
-                                .background(Color.blue)
-                                .cornerRadius(6)
+                            Label(
+                                title: { Text("Cart").foregroundColor(.white).bold() },
+                                icon: { Image(systemName: "cart.badge.plus").foregroundColor(.white) }
+                            )
+                            .frame(width: 100, height: 50)
+                            .background(Color.blue)
+                            .cornerRadius(6)
                         }
                     }
                     .frame(width: 150, height: 150, alignment: .bottomTrailing)

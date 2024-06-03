@@ -23,8 +23,9 @@ struct RegisterPage: View {
                         .bold()
                     VStack{
                         Text("Email")
-                            .frame(maxWidth: .infinity, alignment: .leading) // กำหนดให้ข้อความชิดซ้าย
                             .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading) // กำหนดให้ข้อความชิดซ้าย
+                            
                         VStack{
                             HStack{
                                 TextField("", text: $dataModel.user.email)
@@ -40,8 +41,9 @@ struct RegisterPage: View {
                         }
                         
                         Text("Password")
-                            .frame(maxWidth: .infinity, alignment: .leading)
                             .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
                         VStack {
                             HStack {
                                 SecureField("", text: $dataModel.user.password)
@@ -59,8 +61,9 @@ struct RegisterPage: View {
                         }
                         
                         Text("Confirm Password")
-                            .frame(maxWidth: .infinity, alignment: .leading)
                             .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
                         VStack {
                             HStack {
                                 SecureField("", text: $dataModel.user.confirm_password)
@@ -80,25 +83,33 @@ struct RegisterPage: View {
                         .foregroundColor(.white)
                         .padding(.top,10)
                     
-                    Button(action: {print("Register")
+                    Button(action: {
+                        print("Register")
                         dataModel.MyRegister()
                     }) {
-                        HStack{
-                            Label("Register", systemImage: "nil")}
-                    }.padding().frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,maxWidth: .infinity).background(Color.white)
-                        .font(.system(size: 24))
-                        .foregroundColor(.black)
-                        .bold().cornerRadius(40)
-                        .padding(.top,10)
-                    if dataModel.LoginFail{
+                        HStack {
+                            Label("Register", systemImage: "person")
+                        }
+                    }
+                    .padding()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .background(Color.white)
+                    .font(.system(size: 24))
+                    .foregroundColor(.black)
+                    .cornerRadius(40)
+                    .padding(.top, 10)
+
+                    if dataModel.LoginFail {
                         Text("Try Again").foregroundColor(.red)
                     }
+
                     NavigationLink(destination: LoginPage()) {
-                        Text(" Go Back").foregroundColor(.white)
-                            .font(.system(size: 16,weight: .light,design: .serif))
+                        Text("Go Back")
+                            .foregroundColor(.white)
+                            .font(.system(size: 16, weight: .light, design: .serif))
                             .padding(5)
-                            
                     }
+
                     
                     
                 }.frame(width: 300,height: 450).padding(20)
