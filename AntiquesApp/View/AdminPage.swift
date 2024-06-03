@@ -9,9 +9,21 @@ import SwiftUI
 
 struct AdminPage: View {
     @StateObject private var viewModel = Product_Model()
+    @ObservedObject var userOrderViewModel = OrderViewModel()
     var body: some View {
         NavigationView {
             VStack{
+                HStack{
+                        NavigationLink(destination: OrderListView()) {
+                                               Image(systemName: "line.3.horizontal.circle.fill")
+                                                   .resizable()
+                                                   .foregroundColor(.white)
+                                                   .background(Color.black)
+                                                   .cornerRadius(60)
+                                                   .frame(width: 30, height: 30)
+                                           }
+                    Spacer()
+                }.padding(.leading,10)
                 Text("Product")
                     .bold()
                     .font(.title)

@@ -19,7 +19,7 @@ struct Cart: View {
                     } else {
                         LazyVStack {
                             ForEach(viewModel.Cartproducts) { product in
-                                ProductInCartView(product: product, itemCount: $itemCount, totalPrice: $totalPrice, totalStock: $totalStock)
+                                ProductInCartView(product: product, itemCount: $itemCount, totalPrice: $totalPrice, selectedProducts: $selectedProducts)
                             }
                         }
                     }
@@ -53,8 +53,8 @@ struct Cart: View {
                     VStack {
                         VStack {
                             Text("ยอดชำระ")
-                                .bold()
                                 .multilineTextAlignment(.trailing)
+                                .bold()
                                 .padding(.top, 5)
                             Spacer()
                             Text("\(totalPrice, specifier: "%.2f")")
@@ -62,28 +62,15 @@ struct Cart: View {
                                 .padding(5)
                                 .border(Color.black)
                             
-                            if (itemCount >= 1)
-                            {
-                            NavigationLink(destination: PayView(selectedProducts: viewModel.Cartproducts, totalPrice: totalPrice)) {
-                                Text("ชำระเงิน")
-                                    .bold()
+                            NavigationLink(destination: PayView(itemCount: $itemCount, totalPrice: $totalPrice, selectedProducts: selectedProducts)) {
+                                Label("ชำระเงิน", systemImage: "basket.fill")
                                     .foregroundColor(.white)
+                                    .bold()
                                     .frame(width: 100, height: 40)
                                     .background(Color.green)
                                     .cornerRadius(6)
                             }
                             .padding(.bottom, 5)
-                            } else {
-
-                                    Text("ชำระเงิน")
-                                        .bold()
-                                        .foregroundColor(.white)
-                                        .frame(width: 100, height: 40)
-                                        .background(Color.gray)
-                                        .cornerRadius(6)
-                                        .padding(.bottom, 5)
-                            }
-
                         }
                         .padding(.trailing, 20)
                     }

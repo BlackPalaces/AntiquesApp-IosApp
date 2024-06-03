@@ -15,6 +15,6 @@ struct ProductCart: Identifiable, Codable {
     var price: Double
     var imageUrl: String
     var stock: Int
-    
+    var quantity: Int?
 }
 

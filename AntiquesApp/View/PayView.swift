@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import Firebase
-import FirebaseFirestore
 
 
 struct PayView: View {
@@ -15,20 +13,9 @@ struct PayView: View {
     @State private var paymentOption: String = ""
     @EnvironmentObject var dataModel: Data_Model
     @StateObject private var viewModel = Product_Model()
+    @Binding var itemCount: Int
+    @Binding var totalPrice: Double
     var selectedProducts: [ProductCart]
-    var totalPrice: Double
-    @State private var shippingOption: String = "EMS"
-    @State private var paymentOption: String = "COD"
-
-    
-    
-    @State private var checkedProductIds: Set<String> = []
-
-    var checkedProducts: [ProductCart] {
-        selectedProducts.filter { checkedProductIds.contains($0.id ?? "") }
-    }
-    
-    
     var body: some View {
         
         NavigationView {
@@ -41,19 +28,30 @@ struct PayView: View {
             }
             .foregroundColor(.black) // Set the text color to black
             
-            List(selectedProducts, id: \.id) { product in
+            List(selectedProducts) { product in
                 VStack(alignment: .leading) {
                     Text(product.name)
                         .font(.headline)
                     HStack {
-                        VStack{
-                            Text("ราคา: \(String(format: "%.2f", product.price))")
-                            //Text("จำนวนที่สั่ง: ")
+                        VStack {
+                            Text("จำนวน:  \(product.quantity ?? 1)")
+                                .font(.subheadline)
                         }
+                        .padding(.bottom, 5)
+                        VStack {
+                            Text("ราคาต่อชิ้น: \(String(format: "%.2f", product.price))")
+                                .font(.subheadline)
+                        }
+                        .padding(.bottom, 5)
                     }
+                    HStack {
+                        Text("ราคารวม: \(String(format: "%.2f", product.price * Double(product.quantity ?? 1)))")
+                            .font(.subheadline)
+                    }
+                    .padding(.bottom, 5)
                 }
+                .padding(.vertical, 5)
             }
-
             Spacer()
             Section(header: Text("วิธีการจัดส่ง").font(.headline).frame(maxWidth: .infinity, alignment: .leading)) {
                 HStack {
@@ -93,43 +91,21 @@ struct PayView: View {
                         .font(.headline)
                         .frame(maxWidth: .infinity, alignment: .leading) //show total price from previous view
                 }
-                Spacer() 
+                Spacer()
                 Button(action: {
-                    let db = Firestore.firestore()
-                    let user = Auth.auth().currentUser
-                    let timestamp = Timestamp(date: Date())
-                    let orderData: [String: Any] = [
-                        "date": timestamp,
-                        "products": selectedProducts.map { product in
-                            return [
-                                "name": product.name,
-                                "image": product.imageUrl,
-                                "price": product.price
-                            ]
-                        },
-                        "shipping": shippingOption,
-                        "payment": paymentOption
-                    ]
-                    if let userId = user?.uid {
-                        db.collection("users").document(userId).collection("orders").addDocument(data: orderData) { err in
-                            if let err = err {
-                                print("Error adding document: \(err)")
-                            } else {
-                                print("Order successfully placed")
-                                print("\(orderData)")
-                            }
-                        }
-                    } else {
-                        print("User not found")
-                    }
+                    viewModel.BuyProducts(
+                        selectedProducts: selectedProducts,
+                        totalPrice: totalPrice,
+                        user: dataModel.user,
+                        shippingOption: shippingOption,
+                        paymentOption: paymentOption
+                    )
                 }) {
-                    Text("ยืนยัน")
+                    Text("ยืนยันคำสั่งซื้อ")
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.orange)
                 }
-
-
             }
             Spacer()
         }
@@ -146,12 +122,11 @@ struct PayView: View {
 
 struct PayView_Previews: PreviewProvider {
     static var previews: some View {
-        let dummyProducts: [ProductCart] = [
-            ProductCart(id: "1", name: "Product 1", description: "Description 1", price: 10.0, imageUrl: "https://example.com/image1.jpg", stock: 5)
-        ]
-        let totalPrice: Double = 10.0
-        return PayView(selectedProducts: dummyProducts, totalPrice: totalPrice)
-            .environmentObject(Data_Model())
+        @State var itemCount = 0
+        @State var totalPrice = 0.0
+        
+        PayView(itemCount: $itemCount, totalPrice: $totalPrice, selectedProducts: [])   .environmentObject(Data_Model())
     }
 }
+
 
