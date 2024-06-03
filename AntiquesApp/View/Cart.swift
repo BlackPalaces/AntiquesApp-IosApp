@@ -5,6 +5,7 @@ struct Cart: View {
     @State private var itemCount: Int = 0
     @State private var totalPrice: Double = 0.0
     @State private var totalStock: Int = 0
+    @State private var selectedProducts: [ProductCart] = []
     
     var body: some View {
         NavigationView {
@@ -18,7 +19,7 @@ struct Cart: View {
                     } else {
                         LazyVStack {
                             ForEach(viewModel.Cartproducts) { product in
-                                ProductInCartView(product: product, itemCount: $itemCount, totalPrice: $totalPrice, totalStock: $totalStock)
+                                ProductInCartView(product: product, itemCount: $itemCount, totalPrice: $totalPrice, selectedProducts: $selectedProducts)
                             }
                         }
                     }
@@ -61,7 +62,7 @@ struct Cart: View {
                                 .padding(5)
                                 .border(Color.black)
                             
-                            NavigationLink(destination: PayView(selectedProducts: viewModel.Cartproducts, totalPrice: totalPrice)) {
+                            NavigationLink(destination: PayView(itemCount: $itemCount, totalPrice: $totalPrice, selectedProducts: selectedProducts)) {
                                 Label("ชำระเงิน", systemImage: "basket.fill")
                                     .foregroundColor(.white)
                                     .bold()

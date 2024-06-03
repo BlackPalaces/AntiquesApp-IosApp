@@ -23,7 +23,8 @@ struct Home: View {
         VStack{
             HStack{
                 Spacer()
-                NavigationLink(destination: Cart()) {
+                NavigationLink(destination: Cart()
+                    .environmentObject(Data_Model())) {
                 ZStack{
                         Image(systemName: "cart.fill.badge.questionmark")
                             .resizable()
