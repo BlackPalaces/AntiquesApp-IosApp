@@ -37,16 +37,20 @@ struct ProductDetails: View {
                         Button(action: {
                             viewModel.AddtoCart(id: product.id!)
                         }) {
-                            Label("", systemImage: "cart.badge.plus")
-                                .foregroundColor(.white)
-                                .frame(width: 250, height: 50)
-                                .background(Color.black)
-                                .cornerRadius(60)
-                                .overlay(
-                                    Text("Cart")
-                                        .bold()
-                                )
+                            HStack {
+                                Spacer()
+                                Label("", systemImage: "cart.badge.plus")
+                                    .foregroundColor(.white)
+                                Text("Cart")
+                                    .bold()
+                                    .foregroundColor(.white)
+                                Spacer()
+                            }
+                            .frame(width: 250, height: 50)
+                            .background(Color.black)
+                            .cornerRadius(60)
                         }
+
                         Button(action: {
                             viewModel.addToFavorites(id: product.id!)
                         }) {

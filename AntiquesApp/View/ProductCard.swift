@@ -13,7 +13,7 @@ struct ProductCard: View {
     var product: ProductCart
     @StateObject private var viewModel = Product_Model()
     var body: some View {
-        NavigationLink(destination: ProductDetails(product: product)) {
+        NavigationLink(destination: ProductDetails(product: product).navigationBarBackButtonHidden(true)) {
             HStack {
                 AsyncImage(url: URL(string: product.imageUrl)) { image in
                     image

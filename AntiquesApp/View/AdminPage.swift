@@ -14,7 +14,7 @@ struct AdminPage: View {
         NavigationView {
             VStack{
                 HStack{
-                        NavigationLink(destination: OrderListView()) {
+                        NavigationLink(destination: OrderListView().navigationBarBackButtonHidden(true)) {
                                                Image(systemName: "line.3.horizontal.circle.fill")
                                                    .resizable()
                                                    .foregroundColor(.white)
@@ -28,7 +28,7 @@ struct AdminPage: View {
                     .bold()
                     .font(.title)
                 VStack{
-                    NavigationLink(destination: AddProductView()) {
+                    NavigationLink(destination: AddProductView().navigationBarBackButtonHidden(true)) {
                         Label(
                             title: { Text("Add Product").bold().foregroundColor(.white) },
                             icon: { Image(systemName: "plus.circle").foregroundColor(.white) }

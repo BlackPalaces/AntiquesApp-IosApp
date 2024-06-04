@@ -18,4 +18,5 @@ struct User: Identifiable,Codable{
     var profilePicURL: String?
     var backgroundPicURL: String?
     var Nickname: String?
+    var role:String?
 }

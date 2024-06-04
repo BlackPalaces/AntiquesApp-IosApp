@@ -34,20 +34,21 @@ struct Profile: View {
                                     Text("Loading...")
                                 }
                             }
-
-
+                            
+                            
                             HStack{
                                 Spacer()
                                 
                                 Menu {
                                     Button( action: { navigateToEdit = true })
                                     {
-                                Label("Edit Profile", systemImage: "pencil")
+                                        Label("Edit Profile", systemImage: "pencil")
                                     }
-                                    Button(action: { navigateToAdmin = true })
-                                    {
-                                Label("Admin Manager", systemImage: "person.badge.key.fill")
-                                                                        }
+                                    if dataModel.user.role == "admin" {
+                                        Button(action: { navigateToAdmin = true }) {
+                                            Label("Admin Manager", systemImage: "person.badge.key.fill")
+                                        }
+                                    }
                                     Button("Logout", action: { dataModel.Logout()})
                                 } label: {
                                     Image(systemName: "line.3.horizontal.circle.fill")
@@ -75,7 +76,7 @@ struct Profile: View {
                             Text("Loading...")
                         }
                     }
-
+                    
                 }.frame(width: UIScreen.main.bounds.width,alignment: .top)
                     .background(Color.black)
                 
@@ -85,8 +86,8 @@ struct Profile: View {
                         .foregroundStyle(Color.black)
                         .padding(.top ,100)
                         .font(.title)
-                        
-
+                    
+                    
                     VStack{
                         HStack{
                             HStack{
@@ -190,8 +191,8 @@ struct Profile: View {
                 )
             }
             .onAppear {
-                    dataModel.fetchUserinfo()
-                }
+                dataModel.fetchUserinfo()
+            }
         }
     }
 }

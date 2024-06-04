@@ -10,7 +10,7 @@ import SwiftUI
 import FirebaseStorage
 
 final class Data_Model: ObservableObject{
-    @Published var user = User(email: "", password: "",confirm_password: "",Username: "",Phone: "",Address: "",profilePicURL:"", backgroundPicURL:"", Nickname: "")
+    @Published var user = User(email: "", password: "",confirm_password: "",Username: "",Phone: "",Address: "",profilePicURL:"", backgroundPicURL:"", Nickname: "",role: "")
     @Published var userID :  String! = ""
     @Published var isLogin: Bool = false
     @Published var LoginFail: Bool = false
@@ -282,6 +282,7 @@ final class Data_Model: ObservableObject{
                             self.user.Address = data["Address"] as? String ?? ""
                             self.user.profilePicURL = data["profilePicURL"] as? String ?? "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                             self.user.backgroundPicURL = data["backgroundPicURL"] as? String ?? "https://wallpapertag.com/wallpaper/middle/6/0/e/376447-hd-background-images-1920x1080-for-pc.jpg"
+                            self.user.role = data["role"] as? String ?? ""
                         }
                     } else {
                         print("Document data was empty.")
