@@ -9,8 +9,8 @@ import SwiftUI
 
 
 struct PayView: View {
-    @State private var shippingOption: String = ""
-    @State private var paymentOption: String = ""
+    @State private var shippingOption: String = "EMS"
+    @State private var paymentOption: String = "COD"
     @EnvironmentObject var dataModel: Data_Model
     @StateObject private var viewModel = Product_Model()
     @Binding var itemCount: Int

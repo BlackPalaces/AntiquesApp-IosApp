@@ -13,10 +13,19 @@ struct OrderDetailView: View {
                 .font(.subheadline)
             
             // ตัวอย่าง: แสดงรายการสินค้าที่สั่งซื้อ
-            ForEach(order.products) { product in
-                Text("\(product.name) x \(product.quantity)")
-                    .font(.subheadline)
-            }
+//            ForEach(order.products) { product in
+//                Text("\(product.name) x \(product.quantity!)")
+//                    .font(.subheadline)
+//            }
+            Section(header: Text("สินค้าที่สั่งซื้อ")) {
+                           ForEach(order.products.indices, id: \.self) { index in
+                               let product = order.products[index]
+                               VStack(alignment: .leading) {
+                                   Text("\(product.name) x \(product.quantity!)")
+                                                       .font(.subheadline)
+                               }
+                           }
+                       }
         }
         .padding()
         .background(Color.gray.opacity(0.1))

@@ -5,7 +5,9 @@ struct OrderCard: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("รหัสการสั่งซื้อ: \(order.id ?? "")") 
+            Text(order.username)
+                            .font(.headline)
+            Text("รหัสการสั่งซื้อ: \(order.id ?? "")")
                 .font(.headline)
             Text("ราคารวม: \(order.totalPrice, specifier: "%.2f") บาท")
                 .font(.subheadline)

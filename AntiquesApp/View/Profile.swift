@@ -12,6 +12,7 @@ struct Profile: View {
     @EnvironmentObject var dataModel : Data_Model
     @State private var navigateToEdit = false
     @State private var navigateToAdmin = false
+    @State private var navigateToOrder = false
     var body: some View {
         NavigationView {
             VStack{
@@ -47,6 +48,11 @@ struct Profile: View {
                                     if dataModel.user.role == "admin" {
                                         Button(action: { navigateToAdmin = true }) {
                                             Label("Admin Manager", systemImage: "person.badge.key.fill")
+                                        }
+                                    } else {
+                                        Button( action: { navigateToOrder = true })
+                                        {
+                                            Label("Your order", systemImage: "shippingbox.fill")
                                         }
                                     }
                                     Button("Logout", action: { dataModel.Logout()})
@@ -170,10 +176,18 @@ struct Profile: View {
                             }.padding(.horizontal,10)
                             
                         }
+                        
                     }
                 }
                 Spacer()
                 
+                NavigationLink(
+                    destination: OrderListView(),
+                    isActive: $navigateToOrder,
+                    label: {
+                        EmptyView()
+                    }
+                )
                 
                 NavigationLink(
                     destination: AdminPage(),

@@ -416,6 +416,7 @@ final class Product_Model: ObservableObject{
         }
     }
     
+    
     func BuyProducts(selectedProducts: [ProductCart], totalPrice: Double, user: User, shippingOption: String, paymentOption: String) {
             let db = Firestore.firestore()
             guard let userId = Auth.auth().currentUser?.uid else {
@@ -423,8 +424,11 @@ final class Product_Model: ObservableObject{
                 return
             }
             
+            let orderRef = db.collection("Orders").document()
+        
             let orderData: [String: Any] = [
                 "userId": userId,
+                "id": orderRef.documentID,
                 "username": user.Username ?? "",
                 "phone": user.Phone ?? "",
                 "address": user.Address ?? "",
@@ -436,6 +440,9 @@ final class Product_Model: ObservableObject{
                     return [
                         "name": product.name,
                         "quantity": product.quantity ?? 1,
+                        "description": product.description,
+                        "imageUrl": product.imageUrl,
+                        "stock": product.stock,
                         "price": product.price,
                         "totalPrice": product.price * Double(product.quantity ?? 1)
                     ]
